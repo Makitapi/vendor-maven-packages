@@ -1,0 +1,60 @@
+name: Deploy Vendor Artifacts
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Create Maven settings for GitHub Packages
+        run: |
+          cat > "${{ github.workspace }}/settings.xml" <<'EOF'
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <servers>
+              <server>
+                <id>github-vendor</id>
+                <username>${env.GITHUB_ACTOR}</username>
+                <password>${env.MAKITAPI_PAT}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Install Maven settings
+        run: |
+          mkdir -p "$HOME/.m2"
+          cp "${{ github.workspace }}/settings.xml" "$HOME/.m2/settings.xml"
+
+      - name: Deploy all configured vendor artifacts
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          MAKITAPI_PAT: ${{ secrets.MAKITAPI_PAT }}
+          GITHUB_TOKEN: ${{ secrets.MAKITAPI_PAT }}
+          REPOSITORY_ID: github-vendor
+          REPOSITORY_URL: https://maven.pkg.github.com/Makitapi/vendor-maven-packages
+          SKIP_EXISTING: "true"
+        run: ./deploy/deploy-artifacts.sh

@@ -1,0 +1,7 @@
+# path,groupId,artifactId,version,packaging
+impinj/ltkjava-12.2.0.0.jar,com.makitapi.vendor,impinj-ltkjava,12.2.0.0,jar
+impinj/OctaneSDKJava-5.1.0.0.jar,com.makitapi.vendor,impinj-octanesdkjava,5.1.0.0,jar
+brady/NurApi.jar,com.makitapi.vendor,nordicid-nurapi,1.0.0,jar
+brady/NurApiSocketTransport.jar,com.makitapi.vendor,nordicid-nurapi-socket-transport,1.0.0,jar
+zebra/link-os/2.15.5553/ZSDK_API.jar,com.makitapi.vendor,zebra-linkos-sdk,2.15.5553,jar
+zebra/link-os/2.15.5553/snmp6_1z.jar,com.makitapi.vendor,zebra-linkos-snmp,2.15.5553,jar
