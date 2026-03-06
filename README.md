@@ -184,3 +184,12 @@ What it does:
 3. Runs [`deploy/deploy-artifacts.sh`](deploy/deploy-artifacts.sh:1) with `SKIP_EXISTING=true`.
 
 This makes the deployment idempotent for repeated tags/workflow re-runs.
+
+## Release and changelog policy
+
+- Repository release versioning uses Git tags (for example, `v1.0.0`, `v1.1.0`).
+- Artifact versions remain independent and are defined in [`deploy/artifacts.csv`](deploy/artifacts.csv).
+- Every repository release must be recorded in [`CHANGELOG.md`](CHANGELOG.md).
+- Each changelog release entry must include an `Existing artifacts in this release` section listing all artifact coordinates present in that release.
+
+Initial baseline release is documented as [`v1.0.0`](CHANGELOG.md:7).
