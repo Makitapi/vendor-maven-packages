@@ -58,17 +58,30 @@ while IFS=',' read -r raw_path raw_group_id raw_artifact_id raw_version raw_pack
 
   echo "Deploying ${group_id}:${artifact_id}:${version} from ${path}"
 
-  mvn --batch-mode deploy:deploy-file \
+  deploy_log="$(mktemp)"
+  if ! mvn --batch-mode deploy:deploy-file \
     -DgroupId="${group_id}" \
     -DartifactId="${artifact_id}" \
     -Dversion="${version}" \
     -Dpackaging="${packaging}" \
     -Dfile="${file_path}" \
     -DrepositoryId="${REPOSITORY_ID}" \
-    -Durl="${REPOSITORY_URL}"
+    -Durl="${REPOSITORY_URL}" \
+    >"${deploy_log}" 2>&1; then
+    if [[ "${SKIP_EXISTING}" == "true" ]] && grep -q "Conflict (409)" "${deploy_log}"; then
+      echo "Skipping existing artifact after deploy conflict: ${group_id}:${artifact_id}:${version}"
+      skip_count=$((skip_count + 1))
+      rm -f "${deploy_log}"
+      continue
+    fi
 
+    cat "${deploy_log}" >&2
+    rm -f "${deploy_log}"
+    exit 1
+  fi
+
+  rm -f "${deploy_log}"
   deploy_count=$((deploy_count + 1))
 done < "${ARTIFACTS_FILE}"
 
 echo "Deployment complete. deployed=${deploy_count}, skipped=${skip_count}"
-
