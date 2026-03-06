@@ -26,7 +26,6 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-          cache: maven
 
       - name: Create Maven settings for GitHub Packages
         run: |
