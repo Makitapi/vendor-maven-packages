@@ -1,4 +1,6 @@
 # path,groupId,artifactId,version,packaging
+impinj/ltkjava-12.4.0.0.jar,com.makitapi.vendor,impinj-ltkjava,12.4.0.0,jar
+impinj/OctaneSDKJava-5.2.0.0.jar,com.makitapi.vendor,impinj-octanesdkjava,5.2.0.0,jar
 impinj/ltkjava-12.2.0.0.jar,com.makitapi.vendor,impinj-ltkjava,12.2.0.0,jar
 impinj/OctaneSDKJava-5.1.0.0.jar,com.makitapi.vendor,impinj-octanesdkjava,5.1.0.0,jar
 brady/NurApi.jar,com.makitapi.vendor,nordicid-nurapi,1.0.0,jar

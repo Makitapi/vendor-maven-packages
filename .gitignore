@@ -1,0 +1,38 @@
+# IDE/editor settings
+.idea/
+.vscode/
+*.iml
+
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows metadata
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.tmp/
+tmp/
+temp/
+
+# Common build/output directories
+build/
+target/
+out/
+bin/
+
+# Local environment files
+.env
+.env.*
+!.env.example
