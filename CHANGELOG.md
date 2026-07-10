@@ -4,6 +4,16 @@ All notable changes to this repository are documented in this file.
 
 This project follows repository release tags (for example, `v1.0.0`).
 
+## v1.0.2 - 2026-07-10
+
+### Added
+
+- Added Zebra RFID API3 v2.0.5.275 as an Android Archive (AAR).
+
+### Existing artifacts in this release
+
+- `com.makitapi.vendor:zebra-rfid-api3:2.0.5.275`
+
 ## v1.0.1 - 2026-06-26
 
 ### Added
