@@ -80,14 +80,14 @@ vendor-maven-packages/
         snmp6_1z.jar
     rfid-api3/
       2.0.5.292/
-        rfidapi3ziotcllrplib-2.0.5.292.aar
+        rfidapi3lib-2.0.5.292.aar
 ```
 
 Current local path prepared in this repository:
 
 - `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/link-os/2.15.5553/ZSDK_API.jar`
 - `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/link-os/2.15.5553/snmp6_1z.jar`
-- `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/rfid-api3/2.0.5.292/rfidapi3ziotcllrplib-2.0.5.292.aar`
+- `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/rfid-api3/2.0.5.292/rfidapi3lib-2.0.5.292.aar`
 
 ## Deploy Zebra artifacts to GitHub Packages
 
@@ -155,7 +155,7 @@ mvn deploy:deploy-file \
 -DartifactId=zebra-rfid-api3 \
 -Dversion=2.0.5.292 \
 -Dpackaging=aar \
--Dfile=/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/rfid-api3/2.0.5.292/rfidapi3ziotcllrplib-2.0.5.292.aar \
+-Dfile=/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/rfid-api3/2.0.5.292/rfidapi3lib-2.0.5.292.aar \
 -DrepositoryId=github-vendor \
 -Durl=https://maven.pkg.github.com/Makitapi/vendor-maven-packages
 ```

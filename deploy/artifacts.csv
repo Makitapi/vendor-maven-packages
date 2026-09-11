@@ -10,4 +10,4 @@ brady/NurApiSocketTransport.jar,com.makitapi.vendor,nordicid-nurapi-socket-trans
 zebra/link-os/2.15.5553/ZSDK_API.jar,com.makitapi.vendor,zebra-linkos-sdk,2.15.5553,jar
 zebra/link-os/2.15.5553/snmp6_1z.jar,com.makitapi.vendor,zebra-linkos-snmp,2.15.5553,jar
 zebra/rfid-api3/2.0.5.275/rfidapi3lib-2.0.5.275.aar,com.makitapi.vendor,zebra-rfid-api3,2.0.5.275,aar
-zebra/rfid-api3/2.0.5.292/rfidapi3ziotcllrplib-2.0.5.292.aar,com.makitapi.vendor,zebra-rfid-api3,2.0.5.292,aar
+zebra/rfid-api3/2.0.5.292/rfidapi3lib-2.0.5.292.aar,com.makitapi.vendor,zebra-rfid-api3,2.0.5.292,aar
