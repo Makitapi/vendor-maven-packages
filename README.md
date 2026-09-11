@@ -17,6 +17,35 @@ mvn deploy:deploy-file \
 -DrepositoryId=github-vendor \
 -Durl=https://maven.pkg.github.com/Makitapi/vendor-maven-packages
 
+# Impinj Java SDK 6.0.0.0
+
+The current Impinj Java SDK files are published as separate Maven artifacts:
+
+- `impinj/ltkjava-13.0.0.0.jar` -> `com.makitapi.vendor:impinj-ltkjava:13.0.0.0`
+- `impinj/OctaneSDKJava-6.0.0.0.jar` -> `com.makitapi.vendor:impinj-octanesdkjava:6.0.0.0`
+
+Deploy the current Impinj artifacts with:
+
+```bash
+mvn deploy:deploy-file \
+-DgroupId=com.makitapi.vendor \
+-DartifactId=impinj-ltkjava \
+-Dversion=13.0.0.0 \
+-Dpackaging=jar \
+-Dfile=/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/impinj/ltkjava-13.0.0.0.jar \
+-DrepositoryId=github-vendor \
+-Durl=https://maven.pkg.github.com/Makitapi/vendor-maven-packages
+
+mvn deploy:deploy-file \
+-DgroupId=com.makitapi.vendor \
+-DartifactId=impinj-octanesdkjava \
+-Dversion=6.0.0.0 \
+-Dpackaging=jar \
+-Dfile=/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/impinj/OctaneSDKJava-6.0.0.0.jar \
+-DrepositoryId=github-vendor \
+-Durl=https://maven.pkg.github.com/Makitapi/vendor-maven-packages
+```
+
 mvn deploy:deploy-file \
 -DgroupId=com.makitapi.vendor \
 -DartifactId=nordicid-nurapi \
@@ -49,12 +78,16 @@ vendor-maven-packages/
       2.15.5553/
         ZSDK_API.jar
         snmp6_1z.jar
+    rfid-api3/
+      2.0.5.292/
+        rfidapi3ziotcllrplib-2.0.5.292.aar
 ```
 
 Current local path prepared in this repository:
 
 - `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/link-os/2.15.5553/ZSDK_API.jar`
 - `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/link-os/2.15.5553/snmp6_1z.jar`
+- `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/rfid-api3/2.0.5.292/rfidapi3ziotcllrplib-2.0.5.292.aar`
 
 ## Deploy Zebra artifacts to GitHub Packages
 
@@ -108,12 +141,44 @@ In the consuming project `pom.xml`, keep versions in properties so upgrades are 
 </dependencies>
 ```
 
+## Zebra RFID API3 SDK
+
+Zebra RFID API3 v2.0.5.292 is provided as an Android Archive. The Maven artifact is:
+
+- `com.makitapi.vendor:zebra-rfid-api3:2.0.5.292`
+
+Deploy it to GitHub Packages with:
+
+```bash
+mvn deploy:deploy-file \
+-DgroupId=com.makitapi.vendor \
+-DartifactId=zebra-rfid-api3 \
+-Dversion=2.0.5.292 \
+-Dpackaging=aar \
+-Dfile=/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/rfid-api3/2.0.5.292/rfidapi3ziotcllrplib-2.0.5.292.aar \
+-DrepositoryId=github-vendor \
+-Durl=https://maven.pkg.github.com/Makitapi/vendor-maven-packages
+```
+
+In an Android consumer project, add the dependency alongside the other vendor artifacts:
+
+```xml
+<dependency>
+  <groupId>com.makitapi.vendor</groupId>
+  <artifactId>zebra-rfid-api3</artifactId>
+  <version>2.0.5.292</version>
+  <type>aar</type>
+</dependency>
+```
+
 ## Upgrade flow
 
 1. Create a new folder: `zebra/link-os/<new-version>/`
 2. Replace JARs with files from the new Zebra SDK version.
 3. Run `mvn deploy:deploy-file` with `-Dversion=<new-version>`.
 4. In consumer projects, update `zebra.linkos.version` only.
+
+For Zebra RFID API3, create a new folder under `zebra/rfid-api3/<new-version>/` and publish the AAR with `-Dpackaging=aar`.
 
 ## Automated deployment
 
