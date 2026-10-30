@@ -46,14 +46,27 @@ while IFS=',' read -r raw_path raw_group_id raw_artifact_id raw_version raw_pack
   fi
 
   if [[ "${SKIP_EXISTING}" == "true" ]]; then
-    if curl --silent --fail --location \
+    artifact_url="${REPOSITORY_URL%/}/${group_id//.//}/${artifact_id}/${version}/${artifact_id}-${version}.${packaging}"
+    if ! http_status="$(curl --silent --show-error --head --location \
       -u "${GITHUB_ACTOR:-}:${GITHUB_TOKEN:-}" \
-      "${REPOSITORY_URL}/${group_id//./\/}/${artifact_id}/${version}/" \
-      >/dev/null 2>&1; then
-      echo "Skipping existing artifact: ${group_id}:${artifact_id}:${version}"
-      skip_count=$((skip_count + 1))
-      continue
+      --output /dev/null --write-out '%{http_code}' \
+      "${artifact_url}")"; then
+      echo "ERROR: Could not check artifact: ${artifact_url}" >&2
+      exit 1
     fi
+
+    case "${http_status}" in
+      200)
+        echo "Skipping existing artifact: ${group_id}:${artifact_id}:${version}"
+        skip_count=$((skip_count + 1))
+        continue
+        ;;
+      404) ;;
+      *)
+        echo "ERROR: Artifact check returned HTTP ${http_status}: ${artifact_url}" >&2
+        exit 1
+        ;;
+    esac
   fi
 
   echo "Deploying ${group_id}:${artifact_id}:${version} from ${path}"
@@ -68,7 +81,7 @@ while IFS=',' read -r raw_path raw_group_id raw_artifact_id raw_version raw_pack
     -DrepositoryId="${REPOSITORY_ID}" \
     -Durl="${REPOSITORY_URL}" \
     >"${deploy_log}" 2>&1; then
-    if [[ "${SKIP_EXISTING}" == "true" ]] && grep -q "Conflict (409)" "${deploy_log}"; then
+    if [[ "${SKIP_EXISTING}" == "true" ]] && grep -Eq 'Conflict \(409\)|HTTP Status: 409([^0-9]|$)|status code: 409([^0-9]|$)' "${deploy_log}"; then
       echo "Skipping existing artifact after deploy conflict: ${group_id}:${artifact_id}:${version}"
       skip_count=$((skip_count + 1))
       rm -f "${deploy_log}"
