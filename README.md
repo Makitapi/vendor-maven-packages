@@ -254,6 +254,22 @@ What it does:
 
 This makes the deployment idempotent for repeated tags/workflow re-runs.
 
+## Release notes
+
+### Unreleased - Deployment reliability
+
+- Fixed repeated deployments failing with Maven `HTTP Status: 409` despite `SKIP_EXISTING=true`. The script now checks the exact artifact file URL and recognizes multiple Maven conflict message formats.
+- Existing JAR and AAR artifacts are skipped; missing artifacts are deployed. Authentication, authorization, network, and server errors during the existence check remain fatal.
+- No artifact coordinates or versions changed. The complete artifact list is recorded in the [changelog](CHANGELOG.md#unreleased).
+
+Run the workflow from a branch or new tag containing the fix. Re-running the original failed workflow uses its original code and does not pick up these changes.
+
+Validation: all 14 mocked regression tests, ShellCheck, and whitespace checks passed. No live packages were published during verification. Run the regression tests locally with:
+
+```bash
+bash deploy/test-deploy-artifacts.sh
+```
+
 ## Release and changelog policy
 
 - Repository release versioning uses Git tags (for example, `v1.0.0`, `v1.1.0`).
