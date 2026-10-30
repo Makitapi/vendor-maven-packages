@@ -4,7 +4,7 @@ All notable changes to this repository are documented in this file.
 
 This project follows repository release tags (for example, `v1.0.0`).
 
-## Unreleased
+## v1.0.5 - 2026-10-30
 
 ### Fixed
 
