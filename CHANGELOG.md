@@ -4,6 +4,12 @@ All notable changes to this repository are documented in this file.
 
 This project follows repository release tags (for example, `v1.0.0`).
 
+## v1.0.4 - 2026-10-30
+
+### Added
+
+- Added Zebra RFID API3 v2.0.5.297 as an Android Archive (AAR) and configured it for automated deployment.
+
 ## v1.0.3 - 2026-09-11
 
 ### Added

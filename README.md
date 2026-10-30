@@ -81,6 +81,8 @@ vendor-maven-packages/
     rfid-api3/
       2.0.5.292/
         rfidapi3lib-2.0.5.292.aar
+      2.0.5.297/
+        rfidapi3lib-2.0.5.297.aar
 ```
 
 Current local path prepared in this repository:
@@ -88,6 +90,7 @@ Current local path prepared in this repository:
 - `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/link-os/2.15.5553/ZSDK_API.jar`
 - `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/link-os/2.15.5553/snmp6_1z.jar`
 - `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/rfid-api3/2.0.5.292/rfidapi3lib-2.0.5.292.aar`
+- `/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/rfid-api3/2.0.5.297/rfidapi3lib-2.0.5.297.aar`
 
 ## Deploy Zebra artifacts to GitHub Packages
 
@@ -143,19 +146,20 @@ In the consuming project `pom.xml`, keep versions in properties so upgrades are 
 
 ## Zebra RFID API3 SDK
 
-Zebra RFID API3 v2.0.5.292 is provided as an Android Archive. The Maven artifact is:
+Zebra RFID API3 versions 2.0.5.292 and 2.0.5.297 are provided as Android Archives. Their Maven coordinates are:
 
 - `com.makitapi.vendor:zebra-rfid-api3:2.0.5.292`
+- `com.makitapi.vendor:zebra-rfid-api3:2.0.5.297`
 
-Deploy it to GitHub Packages with:
+Version 2.0.5.297 is listed in `deploy/artifacts.csv` for automated deployment. To deploy it manually to GitHub Packages, run from the repository root:
 
 ```bash
 mvn deploy:deploy-file \
 -DgroupId=com.makitapi.vendor \
 -DartifactId=zebra-rfid-api3 \
--Dversion=2.0.5.292 \
+-Dversion=2.0.5.297 \
 -Dpackaging=aar \
--Dfile=/Users/lsoares/Documents/GithubMakitapi/vendor-maven-packages/zebra/rfid-api3/2.0.5.292/rfidapi3lib-2.0.5.292.aar \
+-Dfile=zebra/rfid-api3/2.0.5.297/rfidapi3lib-2.0.5.297.aar \
 -DrepositoryId=github-vendor \
 -Durl=https://maven.pkg.github.com/Makitapi/vendor-maven-packages
 ```
@@ -166,7 +170,7 @@ In an Android consumer project, add the dependency alongside the other vendor ar
 <dependency>
   <groupId>com.makitapi.vendor</groupId>
   <artifactId>zebra-rfid-api3</artifactId>
-  <version>2.0.5.292</version>
+  <version>2.0.5.297</version>
   <type>aar</type>
 </dependency>
 ```
