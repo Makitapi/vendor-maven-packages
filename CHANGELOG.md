@@ -4,6 +4,34 @@ All notable changes to this repository are documented in this file.
 
 This project follows repository release tags (for example, `v1.0.0`).
 
+## Unreleased
+
+### Fixed
+
+- Fixed `SKIP_EXISTING=true` to check the exact Maven artifact URL instead of a repository directory URL, using the configured JAR or AAR extension.
+- Recognize Maven conflict messages including `HTTP Status: 409`, `status code: 409`, and `Conflict (409)` so repeated deployments skip existing versions instead of failing.
+- Treat artifact-check authentication, authorization, network, and server errors as failures rather than attempting deployment after an inconclusive check.
+
+### Added
+
+- Added 14 mocked deployment regression tests in `deploy/test-deploy-artifacts.sh`, covering existing and missing artifacts, conflict formats, failure handling, and disabled skipping.
+
+### Existing artifacts in this release
+
+- `com.makitapi.vendor:impinj-ltkjava:13.0.0.0`
+- `com.makitapi.vendor:impinj-octanesdkjava:6.0.0.0`
+- `com.makitapi.vendor:impinj-ltkjava:12.4.0.0`
+- `com.makitapi.vendor:impinj-octanesdkjava:5.2.0.0`
+- `com.makitapi.vendor:impinj-ltkjava:12.2.0.0`
+- `com.makitapi.vendor:impinj-octanesdkjava:5.1.0.0`
+- `com.makitapi.vendor:nordicid-nurapi:1.0.0`
+- `com.makitapi.vendor:nordicid-nurapi-socket-transport:1.0.0`
+- `com.makitapi.vendor:zebra-linkos-sdk:2.15.5553`
+- `com.makitapi.vendor:zebra-linkos-snmp:2.15.5553`
+- `com.makitapi.vendor:zebra-rfid-api3:2.0.5.297`
+- `com.makitapi.vendor:zebra-rfid-api3:2.0.5.292`
+- `com.makitapi.vendor:zebra-rfid-api3:2.0.5.275`
+
 ## v1.0.4 - 2026-10-30
 
 ### Added
