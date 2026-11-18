@@ -277,7 +277,12 @@ This makes the deployment idempotent for repeated tags/workflow re-runs.
 
 ## Release notes
 
-### Unreleased - Deployment reliability
+### v1.0.6 - Zebra Link-OS Android
+
+- Added the Zebra Link-OS Android SDK 2.17.5585 and its bundled SNMP library to the artifact manifest.
+- See the [changelog](CHANGELOG.md#v106---2026-11-18) for the full artifact list.
+
+### v1.0.5 - Deployment reliability
 
 - Fixed repeated deployments failing with Maven `HTTP Status: 409` despite `SKIP_EXISTING=true`. The script now checks the exact artifact file URL and recognizes multiple Maven conflict message formats.
 - Existing JAR and AAR artifacts are skipped; missing artifacts are deployed. Authentication, authorization, network, and server errors during the existence check remain fatal.
