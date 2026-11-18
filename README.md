@@ -78,6 +78,11 @@ vendor-maven-packages/
       2.15.5553/
         ZSDK_API.jar
         snmp6_1z.jar
+    link-os-android/
+      2.17.5585/
+        ZSDK_ANDROID_API.jar
+        snmp6_1z.jar
+        ... bundled third-party JARs ...
     rfid-api3/
       2.0.5.292/
         rfidapi3lib-2.0.5.292.aar
@@ -143,6 +148,22 @@ In the consuming project `pom.xml`, keep versions in properties so upgrades are 
   </dependency>
 </dependencies>
 ```
+
+## Zebra Link-OS Android SDK
+
+The Link-OS Android 2.17.5585 SDK is separate from the Java SDK above. The shared artifact manifest configures both the local installation and GitHub Packages deployment scripts to process:
+
+- `com.makitapi.vendor:zebra-linkos-android-sdk:2.17.5585` from `zebra/link-os-android/2.17.5585/ZSDK_ANDROID_API.jar`
+- `com.makitapi.vendor:zebra-linkos-android-snmp:2.17.5585` from `zebra/link-os-android/2.17.5585/snmp6_1z.jar`
+
+For an Android project using Gradle, add the SDK and the bundled SNMP library:
+
+```gradle
+implementation 'com.makitapi.vendor:zebra-linkos-android-sdk:2.17.5585'
+implementation 'com.makitapi.vendor:zebra-linkos-android-snmp:2.17.5585'
+```
+
+The SDK directory also contains third-party JARs supplied with the Zebra distribution. These are not published by the manifest, and the generated Maven POMs do not declare them as transitive dependencies. Consumers must supply any required third-party dependencies separately, using suitable Maven coordinates or the bundled files, and account for version conflicts with their existing dependencies.
 
 ## Zebra RFID API3 SDK
 
@@ -256,11 +277,16 @@ This makes the deployment idempotent for repeated tags/workflow re-runs.
 
 ## Release notes
 
-### Unreleased - Deployment reliability
+### v1.0.6 - Zebra Link-OS Android
+
+- Added the Zebra Link-OS Android SDK 2.17.5585 and its bundled SNMP library to the artifact manifest.
+- See the [changelog](CHANGELOG.md#v106---2026-11-18) for the full artifact list.
+
+### v1.0.5 - Deployment reliability
 
 - Fixed repeated deployments failing with Maven `HTTP Status: 409` despite `SKIP_EXISTING=true`. The script now checks the exact artifact file URL and recognizes multiple Maven conflict message formats.
 - Existing JAR and AAR artifacts are skipped; missing artifacts are deployed. Authentication, authorization, network, and server errors during the existence check remain fatal.
-- No artifact coordinates or versions changed. The complete artifact list is recorded in the [changelog](CHANGELOG.md#unreleased).
+- The release artifact list is recorded in the [changelog](CHANGELOG.md#v105---2026-10-30).
 
 Run the workflow from a branch or new tag containing the fix. Re-running the original failed workflow uses its original code and does not pick up these changes.
 

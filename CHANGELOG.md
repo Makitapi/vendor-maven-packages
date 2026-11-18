@@ -4,6 +4,31 @@ All notable changes to this repository are documented in this file.
 
 This project follows repository release tags (for example, `v1.0.0`).
 
+## v1.0.6 - 2026-11-18
+
+### Added
+
+- Added Zebra Link-OS Android SDK 2.17.5585 and its bundled SNMP library to the automated deployment and local installation manifest.
+- Documented Android consumer coordinates and the separately managed third-party dependencies.
+
+### Existing artifacts in this release
+
+- `com.makitapi.vendor:impinj-ltkjava:13.0.0.0`
+- `com.makitapi.vendor:impinj-octanesdkjava:6.0.0.0`
+- `com.makitapi.vendor:impinj-ltkjava:12.4.0.0`
+- `com.makitapi.vendor:impinj-octanesdkjava:5.2.0.0`
+- `com.makitapi.vendor:impinj-ltkjava:12.2.0.0`
+- `com.makitapi.vendor:impinj-octanesdkjava:5.1.0.0`
+- `com.makitapi.vendor:nordicid-nurapi:1.0.0`
+- `com.makitapi.vendor:nordicid-nurapi-socket-transport:1.0.0`
+- `com.makitapi.vendor:zebra-linkos-sdk:2.15.5553`
+- `com.makitapi.vendor:zebra-linkos-snmp:2.15.5553`
+- `com.makitapi.vendor:zebra-linkos-android-sdk:2.17.5585`
+- `com.makitapi.vendor:zebra-linkos-android-snmp:2.17.5585`
+- `com.makitapi.vendor:zebra-rfid-api3:2.0.5.297`
+- `com.makitapi.vendor:zebra-rfid-api3:2.0.5.292`
+- `com.makitapi.vendor:zebra-rfid-api3:2.0.5.275`
+
 ## v1.0.5 - 2026-10-30
 
 ### Fixed
